@@ -59,7 +59,7 @@ document.getElementById('send-btn').addEventListener('click', () => {
   const msg   = document.getElementById('msg').value.trim();
   if (!name || !email || !msg) return;
   window.location.href =
-    'mailto:karina@example.com'
+    'mailto:karinabentancorlenzi@gmail.com'
     + '?subject=' + encodeURIComponent('Message from ' + name)
     + '&body='    + encodeURIComponent(msg + '\n\n— ' + email);
 });
