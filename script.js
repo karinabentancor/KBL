@@ -3,6 +3,42 @@ const navLinks = document.getElementById('nav-links');
 toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
+const sections = document.querySelectorAll('.page-scroll > section');
+
+function isDesktop() { return window.innerWidth > 768; }
+
+function showSection(id) {
+  sections.forEach(s => s.classList.remove('active'));
+  const target = document.querySelector(id);
+  if (target) target.classList.add('active');
+}
+
+function initDesktop() {
+  if (isDesktop()) {
+    showSection('#inicio');
+  } else {
+    sections.forEach(s => {
+      s.classList.remove('active');
+      s.style.display = '';
+      s.style.opacity = '';
+    });
+  }
+}
+
+initDesktop();
+window.addEventListener('resize', initDesktop);
+
+document.querySelectorAll('.nav-links a, .nav-logo').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href || !href.startsWith('#')) return;
+    if (isDesktop()) {
+      e.preventDefault();
+      showSection(href);
+    }
+  });
+});
+
 function fmt(s) {
   return Math.floor(s / 60) + ':' + Math.floor(s % 60).toString().padStart(2, '0');
 }
