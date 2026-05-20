@@ -816,17 +816,36 @@ audio { display: none; }
 }
 
 footer {
-  padding: 1.4rem 2.5rem;
+  padding: 1.2rem 2.5rem 2.4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   border-top: 1px solid var(--line);
 }
 
-footer span {
-  font-size: 12px;
-  letter-spacing: 0.1em;
+.footer-dev {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  opacity: 0.45;
+  transition: opacity 0.2s;
+  padding: 0.6rem 0;
+}
+
+.footer-dev:hover { opacity: 1; }
+
+.footer-dev-label {
+  font-size: 8px;
+  letter-spacing: 0.14em;
   color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.footer-dev-logo {
+  height: 34px;
+  width: auto;
+  display: block;
 }
 
 @media (min-width: 769px) {
@@ -836,7 +855,7 @@ footer span {
   }
 
   .page-scroll {
-    height: calc(100vh - 54px);
+    height: calc(100vh - 54px - 80px);
     overflow: hidden;
     position: relative;
   }
@@ -877,10 +896,6 @@ footer span {
   #notes .container {
     width: 100%;
   }
-
-  .page-scroll > footer {
-    display: none;
-  }
 }
 
 @media (max-width: 900px) {
@@ -917,11 +932,27 @@ footer span {
   section { padding: 4rem 0; }
   .container { padding: 0 1.2rem; }
 
-  .hero-content { padding: 0 1.2rem 2.5rem; }
-  .hero-proyecto { font-size: clamp(1.5rem, 6vw, 2rem); margin-top: 2.5rem; }
-  .hero-wip-text { font-size: 13px; max-width: 100%; }
+  #inicio {
+    overflow-y: auto;
+    min-height: 100svh;
+  }
+
+  .hero-content {
+    margin-top: 0 !important;
+    padding-top: 90vh;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-proyecto { font-size: clamp(1.5rem, 6vw, 2rem); margin-top: 3rem; margin-bottom: 1.2rem; }
+  .hero-wip-text { font-size: 13px; max-width: 100%; line-height: 1.75; }
   .hero-meta { grid-template-columns: 1fr; max-width: 100%; }
-  .hero-cell { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--line2); }
+  .hero-cell { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--line2); padding-top: 1rem; padding-bottom: 1rem; }
+  .hero-cell--wide { border-bottom: none; }
+  .hero-wip-text { font-size: 13px; max-width: 100%; line-height: 1.75; }
+  .hero-meta { grid-template-columns: 1fr; max-width: 100%; }
+  .hero-cell { border-right: none; margin-right: 0; padding-right: 0; border-bottom: 1px solid var(--line2); padding-top: 0.8rem; padding-bottom: 0.8rem; }
   .hero-cell--wide { border-bottom: none; }
 
   .bio-statement p { font-size: 14px; }
@@ -947,7 +978,7 @@ footer span {
   .contact-head { font-size: clamp(1.6rem, 7vw, 2.2rem); }
   .clink { font-size: 11px; }
 
-  footer { flex-direction: column; gap: 0.4rem; padding: 1.2rem; }
+  footer { padding: 1rem 1.2rem; }
 
   .modal { max-height: 95vh; }
   .modal-overlay { padding: 0.5rem; }
