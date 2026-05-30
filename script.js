@@ -118,11 +118,23 @@ function placeholder() {
 }
 
 function openModal(cell) {
-  modalIdx.textContent   = cell.dataset.idx;
+  modalIdx.textContent   = cell.dataset.idx || '';
   modalTitle.textContent = cell.dataset.title;
   modalMeta.textContent  = cell.dataset.meta;
   modalDesc.textContent  = cell.dataset.desc;
-  modalPhotos.innerHTML  = placeholder() + placeholder() + placeholder() + placeholder();
+
+  const photosRaw = cell.dataset.photos || '';
+  const photos = photosRaw ? photosRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+  if (photos.length) {
+    let html = photos.map(src => `<div class="modal-photo"><img src="${src}" alt=""></div>`).join('');
+    // pad to even number with placeholder
+    if (photos.length % 2 !== 0) html += placeholder();
+    modalPhotos.innerHTML = html;
+  } else {
+    modalPhotos.innerHTML = placeholder() + placeholder() + placeholder() + placeholder();
+  }
+
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
