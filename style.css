@@ -328,10 +328,13 @@ section {
 
 .proc-open-hint {
   font-size: 10px;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   color: var(--hi);
   margin-top: 0.6rem;
   opacity: 0.8;
+  line-height: 1.6;
+  white-space: normal;
+  overflow: visible;
 }
 
 .modal-overlay {
@@ -444,7 +447,7 @@ section {
 
 .sound-item {
   display: grid;
-  grid-template-columns: 52px 32px 36px 1fr auto;
+  grid-template-columns: 52px 36px 1fr auto;
   gap: 1rem;
   align-items: center;
   padding: 0.9rem 0;
@@ -489,17 +492,6 @@ section {
 
 .cover-placeholder svg { width: 24px; height: 24px; }
 
-.track-num {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.06em;
-  text-align: right;
-  font-weight: 400;
-  flex-shrink: 0;
-}
-
-.sound-item.playing .track-num { color: var(--accent); }
-
 .play-btn {
   width: 32px;
   height: 32px;
@@ -533,6 +525,18 @@ section {
   min-width: 0;
   overflow: hidden;
 }
+
+.track-title {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--off);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sound-item.playing .track-title { color: var(--hi); }
 
 .track-subdesc {
   font-size: 11px;
@@ -826,20 +830,12 @@ footer {
 
 .footer-dev:hover { opacity: 1; }
 
-.footer-dev-label {
-  font-size: 8px;
-  letter-spacing: 0.14em;
-  color: var(--muted);
-  font-family: 'IBM Plex Mono', monospace;
-}
-
 .footer-dev-logo {
   height: 34px;
   width: auto;
   display: block;
 }
 
-/* ── DESKTOP: sección activa con scroll interno ─────────────────── */
 @media (min-width: 769px) {
   html, body {
     height: 100%;
@@ -863,7 +859,6 @@ footer {
     transition: opacity 0.3s ease;
   }
 
-  /* Secciones activas: scroll interno habilitado */
   .page-scroll > section.active {
     display: flex;
     flex-direction: column;
@@ -874,7 +869,6 @@ footer {
     padding-bottom: 4rem;
   }
 
-  /* Inicio no necesita flex-start ni padding extra */
   #inicio.active {
     display: block;
     justify-content: unset;
@@ -888,7 +882,6 @@ footer {
     height: 100%;
   }
 
-  /* Notes: background-attachment fixed no funciona bien con overflow scroll, usar scroll */
   #notes.active {
     background-attachment: scroll;
   }
@@ -939,10 +932,6 @@ footer {
   #inicio {
     overflow-y: auto;
     min-height: 100svh;
-  }
-
-  /* Mobile hero: imagen full, contenido empujado al fondo */
-  #inicio {
     display: flex;
     flex-direction: column;
   }
@@ -966,10 +955,10 @@ footer {
   .process-grid { grid-template-columns: 1fr 1fr; }
 
   .sound-item {
-    grid-template-columns: 44px 32px 1fr;
+    grid-template-columns: 44px 1fr;
     gap: 0.8rem;
   }
-  .track-num { display: none; }
+  .play-btn { display: none; }
   .track-meta { display: none; }
   .track-desc { display: none; }
 
@@ -1000,11 +989,9 @@ footer {
   .hero-proyecto { font-size: clamp(1.3rem, 7vw, 1.7rem); }
   .sound-item { gap: 0.6rem; }
   .track-cover { width: 40px; height: 40px; }
-  .play-btn { width: 28px; height: 28px; }
   .track-title { font-size: 13px; }
   .clink { word-break: break-word; font-size: 10px; }
   .ff input, .ff textarea { font-size: 12px; }
   .contact-head { font-size: clamp(1.4rem, 8vw, 1.8rem); }
-
   .hero-content { padding-bottom: 3rem; }
 }
